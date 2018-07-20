@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const spells = [
     {
         id: 'energy beam',
-        instructions: 'Everybody in 90 feet radius make dexterity saving throw!',
+        instructions: 'Everybody in 90 feet radius make dexterity saving throw! Did you succeeded?',
         action: (success) => {
             return success ? 'Nice, nothing happens!' : 'Take 1d8 damage!';
         }
