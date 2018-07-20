@@ -10,14 +10,14 @@ export interface OutputContext {
 
 export interface FulfillmentRequest {
     responseId: String
-    session: String
+    session: String;
     queryResult: {
         queryText: String
         parameters: Parameters
         allRequiredParamsPresent: Boolean
         fulfillmentText: String
         fulfillmentMessages: {}
-        outputContexts: OutputContext[]
+        outputContexts: OutputContext[];
         intent: {
             name: string,
             displayName: string,

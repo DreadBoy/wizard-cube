@@ -68,11 +68,21 @@ const handlers: Handler[] = [
     {
         id: 'projects/wizard-cube/agent/intents/3f7a7d8a-dbb3-4b5a-836d-1470fcb2c005',
         handler: (body): FulfillmentResponse => {
-            const {parameters} = body.queryResult;
-            const {spell} = parameters;
+            const context = body.queryResult.outputContexts.filter(c => c.name === `${body.session}/contexts/cast-spell`)[0];
+            if (!context)
+                return {
+                    fulfillmentText: 'I forgot what spell are we talking about.',
+                };
+            const {spell} = context.parameters;
             const Spell = getSpell(spell);
+            if (!Spell)
+                return {
+                    fulfillmentText: 'I forgot what spell are we talking about.',
+                };
+            let {result} = body.queryResult.parameters;
+            result = result === 'yes';
             return {
-                fulfillmentText: 'Welcome to Book of Arcane knowledge! Cast spells, roll dice and enjoy!',
+                fulfillmentText: Spell.action(result),
             };
         }
     },
