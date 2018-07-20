@@ -17,7 +17,7 @@ export interface FulfillmentRequest {
         allRequiredParamsPresent: Boolean
         fulfillmentText: String
         fulfillmentMessages: {}
-        outputContexts?: OutputContext[]
+        outputContexts: OutputContext[]
         intent: {
             name: string,
             displayName: string,
@@ -31,4 +31,5 @@ export interface FulfillmentRequest {
 
 export interface FulfillmentResponse {
     fulfillmentText: string
+    outputContexts?: OutputContext[];
 }

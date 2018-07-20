@@ -1,9 +1,9 @@
 const spells = [
     {
         id: 'energy beam',
-        instructions: 'Everybody in 90 feet radius make dexterity saving throw! Did you succeeded?',
+        instructions: 'One target in 90 feet radius makes dexterity saving throw! Did you succeed?',
         action: (success: boolean) => {
-            return success ? 'Nice, nothing happens!' : 'Take 1d8 damage!'
+            return success ? 'Nice, nothing happens! Did anybody fail?' : 'Take 1d8 damage!'
         }
     }
 ];
