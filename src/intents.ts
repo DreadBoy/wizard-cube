@@ -1,4 +1,5 @@
 import {FulfillmentResponse, Parameters} from './types';
+import {getSpell} from './spells';
 
 function random(from: number, to: number) {
     return Math.floor(Math.random() * to) + from;
@@ -31,6 +32,22 @@ const handlers = [
             const sentiment = sum === number * die + modifier ? ` Holly shit, natural!` : sum === 1 ? ` Fuck!` : '';
             return {
                 fulfillmentText: `Rolling ${number} d ${die} ${modifier > 0 ? `plus ${modifier} ` : ''}for sum of ${sum}!${sentiment}`,
+            };
+        }
+    },
+    {
+        id: 'projects/wizard-cube/agent/intents/4b708ea9-bdf6-4682-9bf6-bcd156a486c1',
+        handler: (parameters: Parameters): FulfillmentResponse => {
+            const {spell} = parameters;
+            let {level} = parameters;
+            level = level || 1;
+            const Spell = getSpell(spell);
+            if (!Spell)
+                return {
+                    fulfillmentText: 'I\'ve never heard of that!',
+                };
+            return {
+                fulfillmentText: Spell.instructions,
             };
         }
     },
