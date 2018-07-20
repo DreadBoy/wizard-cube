@@ -1,0 +1,19 @@
+{
+  "name": "wizard-cube",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/Dread_Boy/wizard-cube.git"
+  },
+  "author": "Matic Leva",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/Dread_Boy/wizard-cube#readme",
+  "dependencies": {
+    "koa": "^2.5.2"
+  }
+}
