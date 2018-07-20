@@ -49,13 +49,24 @@ const handlers = [
                 fulfillmentText: Spell.instructions,
                 outputContexts: [
                     {
-                        name: `${body.session}/contexts/spell`,
+                        name: `${body.session}/contexts/cast-spell`,
                         parameters: {
                             spell,
                         },
                         lifespanCount: 5
                     }
                 ]
+            };
+        }
+    },
+    {
+        id: 'projects/wizard-cube/agent/intents/3f7a7d8a-dbb3-4b5a-836d-1470fcb2c005',
+        handler: (body) => {
+            const { parameters } = body.queryResult;
+            const { spell } = parameters;
+            const Spell = spells_1.getSpell(spell);
+            return {
+                fulfillmentText: 'Welcome to Book of Arcane knowledge! Cast spells, roll dice and enjoy!',
             };
         }
     },
