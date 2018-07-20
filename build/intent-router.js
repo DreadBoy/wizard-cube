@@ -6,7 +6,7 @@ const router = new Router();
 exports.router = router;
 router.post('/wizard-cube', (ctx, next) => {
     const body = ctx.request.body;
-    ctx.response.body = intents_1.getIntent(body.queryResult.intent.name)(body.queryResult.parameters);
+    ctx.response.body = intents_1.getIntent(body.queryResult.intent.name)(body.queryResult.parameters, body.queryResult.outputContexts);
     return next();
 });
 //# sourceMappingURL=intent-router.js.map

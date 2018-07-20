@@ -2,6 +2,12 @@ export interface Parameters {
     [key: string]: any
 }
 
+export interface OutputContext {
+    name: string,
+    lifespanCount: number,
+    parameters: Parameters,
+}
+
 export interface FulfillmentRequest {
     responseId: String
     session: String
@@ -11,7 +17,7 @@ export interface FulfillmentRequest {
         allRequiredParamsPresent: Boolean
         fulfillmentText: String
         fulfillmentMessages: {}
-        outputContexts?: {}
+        outputContexts?: OutputContext[]
         intent: {
             name: string,
             displayName: string,
