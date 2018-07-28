@@ -2,7 +2,7 @@
   "name": "wizard-cube",
   "version": "1.0.0",
   "description": "",
-  "main": "build/index.js",
+  "main": "build/app.js",
   "engines": {
     "node": "9.9.0"
   },
