@@ -4,6 +4,7 @@ import * as bodyParser from 'koa-bodyparser';
 import * as https from 'https';
 import {router as intentRouter} from './intent-router';
 import * as fs from "fs";
+import * as path from "path";
 
 const app = new Koa();
 const router = new Router();
@@ -20,7 +21,7 @@ app
     .use(router.allowedMethods());
 
 const sslOptions = {
-    key: fs.readFileSync('./../host.key'),
-    cert: fs.readFileSync('./../host.cert'),
+    key: fs.readFileSync(path.join(__dirname, './../host.key')),
+    cert: fs.readFileSync(path.join(__dirname, './../host.cert')),
 };
 https.createServer(sslOptions, app.callback()).listen(3596);
