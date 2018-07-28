@@ -5,7 +5,7 @@ import * as Router from 'koa-router';
 
 const router = new Router();
 
-router.post('/wizard-cube', (ctx: Koa.Context, next: Function) => {
+router.post('/', (ctx: Koa.Context, next: Function) => {
     const body = ctx.request.body as FulfillmentRequest;
     ctx.response.body = getIntent(body.queryResult.intent.name)(body);
     return next();
