@@ -39,7 +39,14 @@ const handlers = [
                 else if (sign === 'minus')
                     sum -= modifier;
             }
-            const sentiment = baseSum === number * die ? ` Holly shit, natural!` : baseSum === number * 1 ? ` Fuck!` : '';
+            let sentiment = '';
+            if (baseSum === number * 1)
+                sentiment = ' Fuck!';
+            if (baseSum === number * die)
+                if (die === 20)
+                    sentiment = ' Holly shit, natural!';
+                else
+                    sentiment = ' Holly shit, max!';
             return {
                 fulfillmentText: `Rolling ${number} d ${die} ${modifierText}for sum of ${sum}!${sentiment}`,
             };
