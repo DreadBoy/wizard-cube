@@ -1,4 +1,4 @@
-import {FulfillmentRequest, FulfillmentResponse, OutputContext} from './types';
+import {FulfillmentRequest, FulfillmentResponse} from './types';
 import {getSpell} from './spells';
 
 function random(from: number, to: number) {
@@ -23,9 +23,9 @@ const handlers: Handler[] = [
         id: 'projects/wizard-cube/agent/intents/38b83d78-9372-41b5-b18e-90b5cbd802c0',
         handler: (body): FulfillmentResponse => {
             const {parameters} = body.queryResult;
-            const {number} = parameters;
-            const die = parseInt(parameters.die.slice(1)); // Die comes as D8, not only number
+            const {number, sign} = parameters;
             let {modifier} = parameters;
+            const die = parseInt(parameters.die.slice(1)); // Die comes as D8, not only number
             if (!number)
                 return {
                     fulfillmentText: 'How many dice was it?',
@@ -35,10 +35,19 @@ const handlers: Handler[] = [
                     fulfillmentText: 'What die was it?',
                 };
             modifier = modifier || 0;
-            const sum = new Array(number).fill(0).map(() => random(1, die)).reduce((acc, curr) => acc + curr, 0) + modifier;
-            const sentiment = sum === number * die + modifier ? ` Holly shit, natural!` : sum === 1 ? ` Fuck!` : '';
+            const baseSum = new Array(number).fill(0).map(() => random(1, die)).reduce((acc, curr) => acc + curr, 0);
+            let sum = baseSum;
+            let modifierText = '';
+            if (modifier > 0 && (sign === 'plus' || sign === 'minus')) {
+                modifierText = `${sign} ${modifier} `;
+                if (sign === 'plus')
+                    sum += modifier;
+                else if (sign === 'minus')
+                    sum -= modifier;
+            }
+            const sentiment = baseSum === number * die ? ` Holly shit, natural!` : baseSum === number * 1 ? ` Fuck!` : '';
             return {
-                fulfillmentText: `Rolling ${number} d ${die} ${modifier > 0 ? `plus ${modifier} ` : ''}for sum of ${sum}!${sentiment}`,
+                fulfillmentText: `Rolling ${number} d ${die} ${modifierText}for sum of ${sum}!${sentiment}`,
             };
         }
     },
