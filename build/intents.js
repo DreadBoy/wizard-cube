@@ -4,6 +4,7 @@ const spells_1 = require("./spells");
 function random(from, to) {
     return Math.floor(Math.random() * to) + from;
 }
+const filterProfanity = true;
 const handlers = [
     {
         id: 'projects/wizard-cube/agent/intents/c39f7618-a6d0-40c1-833d-e080cf1b9665',
@@ -41,12 +42,12 @@ const handlers = [
             }
             let sentiment = '';
             if (baseSum === number * 1)
-                sentiment = ' Fuck!';
+                sentiment = filterProfanity ? ' Dang!' : ' Fuck!';
             if (baseSum === number * die)
                 if (die === 20)
-                    sentiment = ' Holly shit, natural!';
+                    sentiment = filterProfanity ? 'Nice, natural!' : ' Holly shit, natural!';
                 else
-                    sentiment = ' Holly shit, max!';
+                    sentiment = filterProfanity ? 'Nice, max!' : ' Holly shit, max!';
             return {
                 fulfillmentText: `Rolling ${number} d ${die} ${modifierText}for sum of ${sum}!${sentiment}`,
             };
