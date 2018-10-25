@@ -48,11 +48,11 @@ const handlers: Handler[] = [
                     sum -= modifier;
             }
             let sentiment = '';
-            if(baseSum === number * 1 )
+            if (baseSum === number * 1)
                 sentiment = filterProfanity ? ' Dang!' : ' Fuck!';
-            if(baseSum === number * die)
-                if(die === 20)
-                sentiment = filterProfanity ? 'Nice, natural!' : ' Holly shit, natural!';
+            if (baseSum === number * die)
+                if (die === 20)
+                    sentiment = filterProfanity ? 'Nice, natural!' : ' Holly shit, natural!';
                 else
                     sentiment = filterProfanity ? 'Nice, max!' : ' Holly shit, max!';
             return {
