@@ -1,0 +1,1 @@
+You are looking at backend service for Google Assistant app [Wizard Cuby](https://assistant.google.com/services/a/uid/000000003a415427). It's written in Typescript and deployed to PI where it sits behind proxy and responds to Google's API calls. Most interesting file is probably [intents.ts](src/intents.ts) where's all the magic at.
